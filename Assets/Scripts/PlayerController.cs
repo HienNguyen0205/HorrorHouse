@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     private float xRot;
     [SerializeField] private Transform PlayerCamera;
     [SerializeField] private Rigidbody PlayerBody;
-    [Space]
     [SerializeField] private float Speed;
     [SerializeField] private float Sensitivity;
 
@@ -24,6 +23,14 @@ public class PlayerController : MonoBehaviour
     }
     private void MovePlayer()
     {
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            Speed = 12;
+        }
+        if(Input.GetKey(KeyCode.LeftShift) == false)
+        {
+            Speed = 5;
+        }
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
         PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
     }
