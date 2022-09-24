@@ -3125,6 +3125,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Villa2_Floor_Mid_A_4x (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0b790806c6256594b9fe80ac567508b3, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0b790806c6256594b9fe80ac567508b3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0b790806c6256594b9fe80ac567508b3, type: 3}
       propertyPath: m_RootOrder
       value: 234
@@ -3510,6 +3518,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 1cc770c065d8ef34fa49da4e6d1386e1, type: 3}
       propertyPath: m_Name
       value: Villa2_Deco_Column_Mid_B (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1cc770c065d8ef34fa49da4e6d1386e1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1cc770c065d8ef34fa49da4e6d1386e1, type: 3}
       propertyPath: m_RootOrder
@@ -32916,6 +32928,7 @@ GameObject:
   - component: {fileID: 980406094}
   - component: {fileID: 980406093}
   - component: {fileID: 980406092}
+  - component: {fileID: 980406098}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -32951,6 +32964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec137e99e403d44ba993758c0065197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  footStep: {fileID: 980406098}
   PlayerCamera: {fileID: 1540651241}
   PlayerBody: {fileID: 980406092}
   Speed: 5
@@ -33035,6 +33049,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &980406098
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980406091}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2802b1a72217c464ea0171ad67e835f7, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &982713869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44648,6 +44758,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Villa2_Floor_Mid_A_4x (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0b790806c6256594b9fe80ac567508b3, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0b790806c6256594b9fe80ac567508b3, type: 3}
       propertyPath: m_RootOrder
       value: 230
@@ -55452,6 +55566,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Villa2_Floor_Mid_A_4x (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0b790806c6256594b9fe80ac567508b3, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0b790806c6256594b9fe80ac567508b3, type: 3}
       propertyPath: m_RootOrder
       value: 222
@@ -58812,6 +58930,10 @@ PrefabInstance:
     - target: {fileID: 4252626517937582, guid: fda1d3f77ff15b5418d4d69ec55dc702, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95732907778989842, guid: fda1d3f77ff15b5418d4d69ec55dc702, type: 3}
+      propertyPath: m_Controller
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fda1d3f77ff15b5418d4d69ec55dc702, type: 3}
