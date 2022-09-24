@@ -3,7 +3,11 @@ guid: 9ec137e99e403d44ba993758c0065197
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - footStep: {fileID: 8300000, guid: 76c66b3ae15685a45a334b0628d1edd1, type: 3}
+  - runSound: {fileID: 8300000, guid: 2802b1a72217c464ea0171ad67e835f7, type: 3}
+  - PlayerCamera: {instanceID: 0}
+  - PlayerBody: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
