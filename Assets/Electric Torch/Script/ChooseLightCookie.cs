@@ -24,7 +24,6 @@ public class ChooseLightCookie : MonoBehaviour
      void Start()
     {
         _keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), chooseKeyForCookie);
-        _thisLight.cookie = lightCookie[0];
     }
 
     void Update()
@@ -35,6 +34,7 @@ public class ChooseLightCookie : MonoBehaviour
             _keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), chooseKeyForCookie);
         }
         //
+
         ChooseCookie();
     }
 

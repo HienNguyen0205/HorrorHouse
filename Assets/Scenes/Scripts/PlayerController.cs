@@ -67,10 +67,7 @@ public class PlayerController : MonoBehaviour
     {
         xRot -= PlayerMouseInput.y * Sensitivity;
         transform.Rotate(0f, PlayerMouseInput.x, 0f);
-        if(xRot > -70f && xRot < 60f)
-        {
-            PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
-        }
+        PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
     }
 
     void footStepControl()
