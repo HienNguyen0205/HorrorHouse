@@ -67,7 +67,10 @@ public class PlayerController : MonoBehaviour
     {
         xRot -= PlayerMouseInput.y * Sensitivity;
         transform.Rotate(0f, PlayerMouseInput.x, 0f);
-        PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+        if(xRot > -60f && xRot < 60f)
+        {
+            PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+        }
     }
 
     void footStepControl()
@@ -76,11 +79,11 @@ public class PlayerController : MonoBehaviour
         {
             if (isRunning)
             {
-                audioSource.PlayOneShot(runSound, 0.5f);
+                audioSource.PlayOneShot(runSound, 0.7f);
             }
             else
             {
-                audioSource.PlayOneShot(footStep, 0.3f);
+                audioSource.PlayOneShot(footStep, 0.5f);
             }
         }
     }

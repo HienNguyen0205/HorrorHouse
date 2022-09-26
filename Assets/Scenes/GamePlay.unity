@@ -28607,7 +28607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3001713506112187442, guid: f63e65675a6e1494f940b88d554ba138, type: 3}
       propertyPath: _PowerPickUp
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3001713506112187442, guid: f63e65675a6e1494f940b88d554ba138, type: 3}
       propertyPath: intensityLight
@@ -28615,7 +28615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3001713506112187442, guid: f63e65675a6e1494f940b88d554ba138, type: 3}
       propertyPath: modoLightChoose
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3324364588802526607, guid: f63e65675a6e1494f940b88d554ba138, type: 3}
       propertyPath: m_RootOrder
@@ -32964,8 +32964,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec137e99e403d44ba993758c0065197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footStep: {fileID: 980406098}
-  runSound: {fileID: 0}
+  footStep: {fileID: 8300000, guid: 76c66b3ae15685a45a334b0628d1edd1, type: 3}
+  runSound: {fileID: 8300000, guid: 2802b1a72217c464ea0171ad67e835f7, type: 3}
   PlayerCamera: {fileID: 1540651241}
   PlayerBody: {fileID: 980406092}
   Speed: 5
@@ -33060,7 +33060,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2802b1a72217c464ea0171ad67e835f7, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
