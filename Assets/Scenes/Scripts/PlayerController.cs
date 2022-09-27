@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.LeftShift))
         {
-            Speed = 8;
+            Speed = 7;
             isRunning = true;
         }
         if(Input.GetKey(KeyCode.LeftShift) == false)
