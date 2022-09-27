@@ -35276,7 +35276,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ec137e99e403d44ba993758c0065197, type: 3}
   m_Name: 
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   footStep: {fileID: 8300000, guid: 76c66b3ae15685a45a334b0628d1edd1, type: 3}
   runSound: {fileID: 8300000, guid: 2802b1a72217c464ea0171ad67e835f7, type: 3}
   PlayerCamera: {fileID: 1540651241}

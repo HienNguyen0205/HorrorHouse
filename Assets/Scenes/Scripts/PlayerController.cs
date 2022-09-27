@@ -51,12 +51,12 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.LeftShift))
         {
-            Speed = 10;
+            Speed = 8;
             isRunning = true;
         }
         if(Input.GetKey(KeyCode.LeftShift) == false)
         {
-            Speed = 5;
+            Speed = 3;
             isRunning = false;
         }
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
     void MovePlayerCamera()
     {
         xRot -= PlayerMouseInput.y * Sensitivity;
-        transform.Rotate(0f, PlayerMouseInput.x, 0f);
+        transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
         if(xRot > -60f && xRot < 60f)
         {
             PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
