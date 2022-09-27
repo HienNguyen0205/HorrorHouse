@@ -51,12 +51,12 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.LeftShift))
         {
-            Speed = 10;
+            Speed = 7;
             isRunning = true;
         }
         if(Input.GetKey(KeyCode.LeftShift) == false)
         {
-            Speed = 5;
+            Speed = 3;
             isRunning = false;
         }
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
@@ -66,8 +66,11 @@ public class PlayerController : MonoBehaviour
     void MovePlayerCamera()
     {
         xRot -= PlayerMouseInput.y * Sensitivity;
-        transform.Rotate(0f, PlayerMouseInput.x, 0f);
-        PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+        transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
+        if(xRot > -60f && xRot < 60f)
+        {
+            PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+        }
     }
 
     void footStepControl()
@@ -76,11 +79,11 @@ public class PlayerController : MonoBehaviour
         {
             if (isRunning)
             {
-                audioSource.PlayOneShot(runSound, 0.5f);
+                audioSource.PlayOneShot(runSound, 0.7f);
             }
             else
             {
-                audioSource.PlayOneShot(footStep, 0.3f);
+                audioSource.PlayOneShot(footStep, 0.5f);
             }
         }
     }
