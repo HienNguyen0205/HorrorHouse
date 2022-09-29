@@ -12,7 +12,7 @@ public class TriggerDoorControler : MonoBehaviour
 
     private void Update()
     {
-        if (isNear && Input.GetKeyDown(KeyCode.E))
+        if (isNear && Input.GetKeyDown(KeyCode.F))
         {
             DoorControl();
         }
