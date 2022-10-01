@@ -1,17 +1,9 @@
-﻿// - ElectricTorchOnOff - Script by Marcelli Michele
-
-// This script is attached in primary model (default) of the Electric Torch.
-// You can On/Off the light and choose any letter on the keyboard to control it
-// Use the "battery" or no and the duration time
-// Change the intensity of the light
-
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ElectricTorchOnOff : MonoBehaviour
 {
 	EmissionMaterialGlassTorchFadeOut _emissionMaterialFade;
 	BatteryPowerPickup _batteryPower;
-	//
 
 	public enum LightChoose
     {

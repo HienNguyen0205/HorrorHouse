@@ -7,15 +7,18 @@ public class TriggerDoorControler : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private int doorType;
+    [SerializeField] private new Collider collider;
     private bool isClose = true;
     private bool isNear = false;
+    private bool isActive = false;
 
     private void Update()
     {
-        if (isNear && Input.GetKeyDown(KeyCode.F))
+        if (isNear && Input.GetKeyDown(KeyCode.F) && !isActive)
         {
             DoorControl();
         }
+        checkAnimation();
     }
     
     private void DoorControl()
@@ -58,7 +61,20 @@ public class TriggerDoorControler : MonoBehaviour
             }
             isClose = true;
         }
-        
+    }
+
+    private void checkAnimation()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        {
+            collider.isTrigger = true;
+            isActive = true;
+        }
+        else
+        {
+            collider.isTrigger = false;
+            isActive = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
