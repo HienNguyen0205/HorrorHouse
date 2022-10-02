@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip footStep;
     [SerializeField] private AudioClip runSound;
     private AudioSource audioSource;
-    private Boolean isRunning;
+    private bool isRunning;
     private Vector3 PlayerMovementInput;
     private Vector2 PlayerMouseInput;
     private float xRot;
@@ -54,12 +54,12 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.LeftShift))
         {
-            Speed = 6;
+            Speed = 8;
             isRunning = true;
         }
         if(Input.GetKey(KeyCode.LeftShift) == false)
         {
-            Speed = 3;
+            Speed = 5;
             isRunning = false;
         }
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
