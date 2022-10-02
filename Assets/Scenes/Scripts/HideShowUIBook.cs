@@ -4,25 +4,38 @@ using UnityEngine;
 
 public class HideShowUIBook : MonoBehaviour
 {
-    public GameObject touchUI_1;
+    [SerializeField] private GameObject touchUI_1;
+    [SerializeField] private GameObject touchUI_2;
     private bool isNear;
     // Start is called before the first frame update
     void Start()
     {
-
+        touchUI_2.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isNear || (isNear && Input.GetKey(KeyCode.F)))
+        if (!isNear)
         {
-            isNear = false;
             touchUI_1.SetActive(false);
+            touchUI_2.SetActive(false);
         }
         else
         {
-            touchUI_1.SetActive(true);
+            if (Input.GetKey(KeyCode.F))
+            {
+                touchUI_2.SetActive(true);
+            }
+            else if(touchUI_2.activeSelf)
+            {
+                touchUI_1.SetActive(false);
+            }
+            else
+            {
+                touchUI_1.SetActive(true);
+            }
+
         }
 
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameObject lightTeaching;
     [SerializeField] private AudioClip footStep;
     [SerializeField] private AudioClip runSound;
     private AudioSource audioSource;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        lightTeaching.SetActive(true);
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
             audioSource.Play();
             MovePlayer();
             footStepControl();
+            checkLightPressing();
         }
         else
         {
@@ -85,6 +88,13 @@ public class PlayerController : MonoBehaviour
             {
                 audioSource.PlayOneShot(footStep, 0.5f);
             }
+        }
+    }
+    void checkLightPressing()
+    {
+        if(Input.GetKey(KeyCode.E))
+        {
+            lightTeaching.SetActive(false);
         }
     }
 }
