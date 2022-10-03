@@ -36,13 +36,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        checkLightPressing();
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
             audioSource.Play();
             MovePlayer();
             footStepControl();
-            checkLightPressing();
         }
         else
         {
