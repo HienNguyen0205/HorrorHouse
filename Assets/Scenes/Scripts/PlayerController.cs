@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameObject lightTeaching;
     [SerializeField] private AudioClip footStep;
     [SerializeField] private AudioClip runSound;
     private AudioSource audioSource;
-    private Boolean isRunning;
+    private bool isRunning;
     private Vector3 PlayerMovementInput;
     private Vector2 PlayerMouseInput;
     private float xRot;
@@ -17,8 +18,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float Speed;
     [SerializeField] private float Sensitivity;
 
-    void Start()
+    void Awake()
     {
+        lightTeaching.SetActive(true);
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
             audioSource.Play();
             MovePlayer();
             footStepControl();
+            checkLightPressing();
         }
         else
         {
@@ -51,12 +54,12 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.LeftShift))
         {
-            Speed = 7;
+            Speed = 8;
             isRunning = true;
         }
         if(Input.GetKey(KeyCode.LeftShift) == false)
         {
-            Speed = 3;
+            Speed = 5;
             isRunning = false;
         }
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
@@ -85,6 +88,13 @@ public class PlayerController : MonoBehaviour
             {
                 audioSource.PlayOneShot(footStep, 0.5f);
             }
+        }
+    }
+    void checkLightPressing()
+    {
+        if(Input.GetKey(KeyCode.E))
+        {
+            lightTeaching.SetActive(false);
         }
     }
 }

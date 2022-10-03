@@ -1,0 +1,100 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TriggerDoorControler : MonoBehaviour
+{
+    [SerializeField] private Animator animator;
+    [SerializeField] private int doorType;
+    [SerializeField] private new Collider collider;
+    [SerializeField] private AudioClip openSound;
+    [SerializeField] private AudioClip closeSound;
+    [SerializeField] private AudioSource sound;
+    private bool isClose = true;
+    private bool isNear = false;
+    private bool isActive = false;
+
+    private void Update()
+    {
+        if (isNear && Input.GetKeyDown(KeyCode.F) && !isActive)
+        {
+            DoorControl();
+        }
+        checkAnimation();
+    }
+    
+    private void DoorControl()
+    {
+        if (isClose)
+        {
+            switch (doorType)
+            {
+                case 1:
+                    animator.Play("DoorOpen1", 0, 0.0f);
+                    break;
+                case 2:
+                    animator.Play("DoorOpen2", 0, 0.0f);
+                    break;
+                case 3:
+                    animator.Play("DoorOpen3", 0, 0.0f);
+                    break;
+                case 4:
+                    animator.Play("DoorOpen4", 0, 0.0f);
+                    break;
+            }
+            sound.PlayOneShot(openSound);
+            isClose = false;
+        }
+        else
+        {
+            switch (doorType)
+            {
+                case 1:
+                    animator.Play("DoorClose1", 0, 0.0f);
+                    break;
+                case 2:
+                    animator.Play("DoorClose2", 0, 0.0f);
+                    break;
+                case 3:
+                    animator.Play("DoorClose3", 0, 0.0f);
+                    break;
+                case 4:
+                    animator.Play("DoorClose4", 0, 0.0f);
+                    break;
+            }
+            sound.PlayOneShot(closeSound);
+            isClose = true;
+        }
+    }
+
+    private void checkAnimation()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        {
+            collider.isTrigger = true;
+            isActive = true;
+        }
+        else
+        {
+            collider.isTrigger = false;
+            isActive = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isNear = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isNear = false;
+        }
+    }
+}
