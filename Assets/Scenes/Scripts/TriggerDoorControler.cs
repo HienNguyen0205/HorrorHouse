@@ -8,6 +8,9 @@ public class TriggerDoorControler : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private int doorType;
     [SerializeField] private new Collider collider;
+    [SerializeField] private AudioClip openSound;
+    [SerializeField] private AudioClip closeSound;
+    [SerializeField] private AudioSource sound;
     private bool isClose = true;
     private bool isNear = false;
     private bool isActive = false;
@@ -40,6 +43,7 @@ public class TriggerDoorControler : MonoBehaviour
                     animator.Play("DoorOpen4", 0, 0.0f);
                     break;
             }
+            sound.PlayOneShot(openSound);
             isClose = false;
         }
         else
@@ -59,6 +63,7 @@ public class TriggerDoorControler : MonoBehaviour
                     animator.Play("DoorClose4", 0, 0.0f);
                     break;
             }
+            sound.PlayOneShot(closeSound);
             isClose = true;
         }
     }

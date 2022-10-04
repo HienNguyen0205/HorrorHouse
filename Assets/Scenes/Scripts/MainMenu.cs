@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject LoadingScreen;
+    public GameObject MainMenuObj;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +19,33 @@ public class MainMenu : MonoBehaviour
         
     }
 
-    public void playGame()
+    public void LoadScene(int sceneId)
     {
-        SceneManager.LoadScene(1);
+        StartCoroutine(LoadSceneAsync(sceneId));
     }
 
     public void quitGame()
     {
         Application.Quit();
+    }
+
+    IEnumerator LoadSceneAsync(int sceneId)
+    {
+        LoadingScreen.SetActive(true);
+        MainMenuObj.SetActive(false);
+        yield return new WaitForSeconds(5);
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
+        while (!operation.isDone)
+        {
+            yield return null;
+        }
+
+        if(operation.isDone)
+        {
+            MainMenuObj.gameObject.SetActive(true);
+            LoadingScreen.gameObject.SetActive(false);
+        }
+
     }
 }
