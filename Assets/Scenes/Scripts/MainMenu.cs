@@ -33,7 +33,7 @@ public class MainMenu : MonoBehaviour
     {
         LoadingScreen.SetActive(true);
         MainMenuObj.SetActive(false);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
         while (!operation.isDone)
