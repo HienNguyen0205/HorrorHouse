@@ -42,6 +42,9 @@ public class TriggerDoorControler : MonoBehaviour
                 case 4:
                     animator.Play("DoorOpen4", 0, 0.0f);
                     break;
+                case 5:
+                    animator.Play("DoorOpen5", 0, 0.0f);
+                    break;
             }
             sound.PlayOneShot(openSound);
             isClose = false;
@@ -61,6 +64,9 @@ public class TriggerDoorControler : MonoBehaviour
                     break;
                 case 4:
                     animator.Play("DoorClose4", 0, 0.0f);
+                    break;
+                case 5:
+                    animator.Play("DoorClose5", 0, 0.0f);
                     break;
             }
             sound.PlayOneShot(closeSound);
