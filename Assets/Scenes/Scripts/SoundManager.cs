@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SoundManager : MonoBehaviour
 {
     public AudioSource menuAudioSource; 
-    private float menuAudioVolume = 1f;
+    private float menuAudioVolume = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +16,7 @@ public class SoundManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        menuAudioSource.volume = menuAudioVolume;
+        menuAudioSource.volume = menuAudioVolume / 2;
     }
 
     public void ChangeVolumn(float volume)

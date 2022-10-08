@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84a92b25f83d49b9bc132d206b370281, type: 3}
-  m_Name: KeyboardF
+  m_Name: pickup_nobg
   m_EditorClassIdentifier: 
-  hashCode: -392394399
-  material: {fileID: 7573162672970874760}
+  hashCode: -2049514929
+  material: {fileID: 2426169871496805207}
   materialHashCode: 0
   m_Version: 1.1.0
   m_FaceInfo:
@@ -37,33 +37,33 @@ MonoBehaviour:
     m_StrikethroughOffset: 0
     m_StrikethroughThickness: 0
     m_TabWidth: 0
-  spriteSheet: {fileID: 2800000, guid: 88de50a5c6f9ae54fafdef294885ca89, type: 3}
+  spriteSheet: {fileID: 2800000, guid: 3ef95b5c4bb18bf438c9975e2b6f1942, type: 3}
   m_SpriteCharacterTable:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 0
     m_Scale: 1
-    m_Name: My project
-    m_HashCode: -392394399
+    m_Name: pickup_nobg
+    m_HashCode: -2049514929
   m_SpriteGlyphTable:
   - m_Index: 0
     m_Metrics:
-      m_Width: 512
-      m_Height: 512
-      m_HorizontalBearingX: -194.3
-      m_HorizontalBearingY: 216.6
-      m_HorizontalAdvance: 117.6
+      m_Width: 640
+      m_Height: 640
+      m_HorizontalBearingX: 139.1
+      m_HorizontalBearingY: 421.9
+      m_HorizontalAdvance: 640
     m_GlyphRect:
       m_X: 0
       m_Y: 0
-      m_Width: 512
-      m_Height: 512
-    m_Scale: 8
+      m_Width: 640
+      m_Height: 640
+    m_Scale: 3
     m_AtlasIndex: 0
-    sprite: {fileID: 21300000, guid: 88de50a5c6f9ae54fafdef294885ca89, type: 3}
+    sprite: {fileID: 21300000, guid: 3ef95b5c4bb18bf438c9975e2b6f1942, type: 3}
   spriteInfoList: []
   fallbackSpriteAssets: []
---- !u!21 &7573162672970874760
+--- !u!21 &2426169871496805207
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 1
@@ -84,7 +84,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 88de50a5c6f9ae54fafdef294885ca89, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3ef95b5c4bb18bf438c9975e2b6f1942, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []

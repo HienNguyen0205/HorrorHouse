@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84a92b25f83d49b9bc132d206b370281, type: 3}
-  m_Name: KeyboardF
+  m_Name: KeyBoard_F
   m_EditorClassIdentifier: 
-  hashCode: -392394399
-  material: {fileID: 7573162672970874760}
+  hashCode: 827405068
+  material: {fileID: 4092216061155243417}
   materialHashCode: 0
   m_Version: 1.1.0
   m_FaceInfo:
@@ -37,33 +37,33 @@ MonoBehaviour:
     m_StrikethroughOffset: 0
     m_StrikethroughThickness: 0
     m_TabWidth: 0
-  spriteSheet: {fileID: 2800000, guid: 88de50a5c6f9ae54fafdef294885ca89, type: 3}
+  spriteSheet: {fileID: 2800000, guid: aea6432b156e07a46a78c5abded96a5c, type: 3}
   m_SpriteCharacterTable:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 0
     m_Scale: 1
-    m_Name: My project
-    m_HashCode: -392394399
+    m_Name: 128-1287444_key-f-icon-e-key-icon-png-removebg-preview_1
+    m_HashCode: 827405068
   m_SpriteGlyphTable:
   - m_Index: 0
     m_Metrics:
-      m_Width: 512
-      m_Height: 512
-      m_HorizontalBearingX: -194.3
-      m_HorizontalBearingY: 216.6
-      m_HorizontalAdvance: 117.6
+      m_Width: 701
+      m_Height: 356
+      m_HorizontalBearingX: -5.17
+      m_HorizontalBearingY: 91.5
+      m_HorizontalAdvance: 701
     m_GlyphRect:
       m_X: 0
       m_Y: 0
-      m_Width: 512
-      m_Height: 512
-    m_Scale: 8
+      m_Width: 701
+      m_Height: 356
+    m_Scale: 2.5
     m_AtlasIndex: 0
-    sprite: {fileID: 21300000, guid: 88de50a5c6f9ae54fafdef294885ca89, type: 3}
+    sprite: {fileID: 21300000, guid: aea6432b156e07a46a78c5abded96a5c, type: 3}
   spriteInfoList: []
   fallbackSpriteAssets: []
---- !u!21 &7573162672970874760
+--- !u!21 &4092216061155243417
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 1
@@ -84,7 +84,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 88de50a5c6f9ae54fafdef294885ca89, type: 3}
+        m_Texture: {fileID: 2800000, guid: aea6432b156e07a46a78c5abded96a5c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []

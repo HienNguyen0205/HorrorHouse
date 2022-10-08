@@ -14,10 +14,6 @@ public class ElectricTorchOnOff : MonoBehaviour
 	public LightChoose modoLightChoose;
 	[Space]
 	[Space]
-	private string onOffLightKey = "E";
-	private KeyCode _kCode;
-	[Space]
-	[Space]
 	public bool _PowerPickUp = false;
 	[Space]
 	public float intensityLight = 2.5F;
@@ -38,38 +34,26 @@ public class ElectricTorchOnOff : MonoBehaviour
 			_emissionMaterialFade = _scriptControllerEmissionFade.GetComponent<EmissionMaterialGlassTorchFadeOut>();
 		}
 		if (_scriptControllerEmissionFade  == null) {Debug.Log("Cannot find 'EmissionMaterialGlassTorchFadeOut' script");}
-
-		_kCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), onOffLightKey);
 	}
 
 	void Update()
 	{
-		// detecting parse error keyboard type
-		if (System.Enum.TryParse(onOffLightKey, out _kCode))
-		{
-			_kCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), onOffLightKey);
-		}
-        //
-
         switch (modoLightChoose)
         {
             case LightChoose.noBattery:
 				NoBatteryLight();
-				break;
-            case LightChoose.withBattery:
-				WithBatteryLight();
-				break;
+                break;
         }
 	}
 
 	void InputKey()
     {
-		if (Input.GetKeyDown(_kCode) && _flashLightOn == true)
+		if (Input.GetKeyDown(KeyCode.E) && _flashLightOn == true)
 		{
 			_flashLightOn = false;
 
 		}
-		else if (Input.GetKeyDown(_kCode) && _flashLightOn == false)
+		else if (Input.GetKeyDown(KeyCode.E) && _flashLightOn == false)
 		{
 			_flashLightOn = true;
 
@@ -88,38 +72,6 @@ public class ElectricTorchOnOff : MonoBehaviour
 			GetComponent<Light>().intensity = 0.0f;
 			_emissionMaterialFade.OffEmission();
 		}
-		InputKey();
-	}
-
-	void WithBatteryLight()
-    {
-
-		if (_flashLightOn)
-		{
-			GetComponent<Light>().intensity = intensityLight;
-			intensityLight -= Time.deltaTime * _lightTime;
-			_emissionMaterialFade.TimeEmission(_lightTime);
-            
-			if (intensityLight < 0)
-            {
-				intensityLight = 0;
-			}
-			if (_PowerPickUp == true)
-			{
-				intensityLight = _batteryPower.PowerIntensityLight;
-			}
-		}
-		else
-		{
-			GetComponent<Light>().intensity = 0.0f;
-			_emissionMaterialFade.OffEmission();
-
-			if (_PowerPickUp == true)
-			{
-				intensityLight = _batteryPower.PowerIntensityLight;
-			}
-		}
-
 		InputKey();
 	}
 }
