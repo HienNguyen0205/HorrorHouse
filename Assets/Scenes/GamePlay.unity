@@ -250,16 +250,16 @@ MonoBehaviour:
     for conducting a ritual to summon a demon, Daemon. This demon can help people
     get what they want, including wealth, money, or a happy family. With the current
     situation, I decided to join them. The ceremony was conducted one week after
-    they arrived. I let them use the basement of the motel to build a place to perform.
-    I was surprised to see that there were cells to hold the living. There were both
-    men and women who were drugged and taken down here by them. The ritual was performed
-    when they cut their victims' throats and placed them on the sacrificial table.
-    The sky darkened, the moon turned red, and the demon appeared. I immediately
-    shouted that I wanted to have a family like everyone else, but the only response
-    of it was growl. The demon attacked and killed everyone present. I was lucky
-    to escape. It's been 1 day since then. It's still trying to get into my room.
-    There are still two girls who are renting the house. I hope that they are okay.
-    Maybe my life can only come to this...
+    they arrived. I let them use the secret basement of the motel to build a place
+    to perform. I was surprised to see that there were cells to hold the living.
+    There were both men and women who were drugged and taken down here by them. The
+    ritual was performed when they cut their victims' throats and placed them on
+    the sacrificial table. The sky darkened, the moon turned red, and the demon appeared.
+    I immediately shouted that I wanted to have a family like everyone else, but
+    the only response of it was growl. The demon attacked and killed everyone present.
+    I was lucky to escape. It's been 1 day since then. It's still trying to get into
+    my room. There are still two girls who are renting the house. I hope that they
+    are okay. Maybe my life can only come to this...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab32477231f433a45833ca22b33e850b, type: 2}
   m_sharedMaterial: {fileID: -8083101359294393280, guid: ab32477231f433a45833ca22b33e850b, type: 2}
@@ -34089,7 +34089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3001713506112187442, guid: f63e65675a6e1494f940b88d554ba138, type: 3}
       propertyPath: intensityLight
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3001713506112187442, guid: f63e65675a6e1494f940b88d554ba138, type: 3}
       propertyPath: modoLightChoose
@@ -39446,6 +39446,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1540651241}
+  - {fileID: 2132668645}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 264.74298, z: 0}
@@ -41360,8 +41361,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a793f6e6baae23a4e99c7fe2834c590e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstVoice: {fileID: 8300000, guid: 5e4d8712e6bac514c94ec2a49ad769c2, type: 3}
-  sound: {fileID: 1473862190}
+  charVoice: {fileID: 8300000, guid: e5a48bdba5fabbf4da1a4683ab187736, type: 3}
+  sound: {fileID: 2132668644}
+  delay: 3
 --- !u!1001 &1018617796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43950,6 +43952,7 @@ GameObject:
   - component: {fileID: 1081219970}
   - component: {fileID: 1081219969}
   - component: {fileID: 1081219973}
+  - component: {fileID: 1081219974}
   m_Layer: 0
   m_Name: DetectPlayer (7)
   m_TagString: DetectForDoor
@@ -44049,6 +44052,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchUI_1: {fileID: 87876322}
   touchUI_2: {fileID: 608520493}
+--- !u!114 &1081219974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081219966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a793f6e6baae23a4e99c7fe2834c590e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charVoice: {fileID: 8300000, guid: 40bc98f0c0ee9ce439dcaf012f9727d4, type: 3}
+  sound: {fileID: 2132668644}
+  delay: 10
 --- !u!1001 &1083123504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60278,6 +60296,7 @@ GameObject:
   - component: {fileID: 1494290492}
   - component: {fileID: 1494290491}
   - component: {fileID: 1494290495}
+  - component: {fileID: 1494290496}
   m_Layer: 0
   m_Name: DetectPlayer(10)
   m_TagString: DetectForSecretDoor
@@ -60377,6 +60396,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightAnimator: {fileID: 567380973}
   doorAnimator: {fileID: 852797946}
+--- !u!114 &1494290496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494290490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a793f6e6baae23a4e99c7fe2834c590e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charVoice: {fileID: 8300000, guid: 47c8051428d86024287aecd14acbfefd, type: 3}
+  sound: {fileID: 2132668644}
+  delay: 4
 --- !u!1 &1494589652 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 0b790806c6256594b9fe80ac567508b3, type: 3}
@@ -82974,6 +83008,134 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 4902262240c1cd145bf7e9684a9787d2, type: 3}
+--- !u!1 &2132668643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2132668645}
+  - component: {fileID: 2132668644}
+  m_Layer: 8
+  m_Name: CharacterVoice
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &2132668644
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132668643}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &2132668645
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132668643}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 980406097}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2133738367
 PrefabInstance:
   m_ObjectHideFlags: 0

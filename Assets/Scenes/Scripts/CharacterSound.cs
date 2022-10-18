@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstCharaterSound : MonoBehaviour
+public class CharacterSound : MonoBehaviour
 {
-    [SerializeField] private AudioClip firstVoice;
+    [SerializeField] private AudioClip charVoice;
 
     [SerializeField] private AudioSource sound;
+
+    [SerializeField] private int delay;
     private bool isClose = true;
     private bool isNear;
     private bool isTalk = false;
@@ -25,14 +27,14 @@ public class FirstCharaterSound : MonoBehaviour
         if(isClose) {
             if(!isTalk)
             {
-                Invoke("checkVoice",2);
+                Invoke("checkVoice",delay);
                 isTalk = true;
             }
             isClose = false;
         }
     }
     private void checkVoice() {
-        sound.PlayOneShot(firstVoice);
+        sound.PlayOneShot(charVoice);
     }
     private void OnTriggerEnter(Collider other)
     {
