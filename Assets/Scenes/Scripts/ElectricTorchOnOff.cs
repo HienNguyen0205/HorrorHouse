@@ -18,8 +18,6 @@ public class ElectricTorchOnOff : MonoBehaviour
 	[Space]
 	public float intensityLight = 2.5F;
 	private bool _flashLightOn = false;
-	[SerializeField] float _lightTime = 0.05f;
-
 
 	private void Awake()
     {
