@@ -7,6 +7,7 @@ public class HideShowUITouch : MonoBehaviour
     public GameObject touchUI_1;
     public GameObject touchUI_2;
     private bool isNear;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,7 @@ public class HideShowUITouch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isNear || (isNear && Input.GetKey(KeyCode.F)))
+        if(!isNear || (isNear && Input.GetKey(KeyCode.F) && DoorLockController.keyType != ""))
         {
             isNear = false;
             touchUI_1.SetActive(false);
