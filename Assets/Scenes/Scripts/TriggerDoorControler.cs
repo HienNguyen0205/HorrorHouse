@@ -18,6 +18,9 @@ public class TriggerDoorControler : MonoBehaviour
     private bool isActive = false;
     private Dictionary<string, string> lockDoor = new Dictionary<string, string>() {
         {"Living_Door", "Key_LivingTable"},
+        {"Rainer_Door", "Key_RainerTable"},
+        {"Wanda_Door", "Key_WandaTable"},
+        {"Final_Door", "Key_FinalTable"},
     };
 
     private void Update()
@@ -29,6 +32,9 @@ public class TriggerDoorControler : MonoBehaviour
                 if(lockDoor[collider.gameObject.name] == DoorLockController.keyType)
                 {
                     DoorControl();
+                    GameObject.Find("Key_Hand").SetActive(false);
+                    DoorLockController.keyType = "";
+                    lockDoor.Remove(collider.gameObject.name); 
                 }
             }
             else
