@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
 
 public class TriggerDoorControler : MonoBehaviour
@@ -14,12 +16,25 @@ public class TriggerDoorControler : MonoBehaviour
     private bool isClose = true;
     private bool isNear = false;
     private bool isActive = false;
+    private Dictionary<string, string> lockDoor = new Dictionary<string, string>() {
+        {"Living_Door", "Key_LivingTable"},
+    };
 
     private void Update()
     {
         if (isNear && Input.GetKeyDown(KeyCode.F) && !isActive)
         {
-            DoorControl();
+            if (lockDoor.ContainsKey(collider.gameObject.name))
+            {
+                if(lockDoor[collider.gameObject.name] == DoorLockController.keyType)
+                {
+                    DoorControl();
+                }
+            }
+            else
+            {
+                DoorControl();
+            }
         }
         checkAnimation();
     }
