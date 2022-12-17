@@ -30,5 +30,5 @@ public class BgVolumnSlider : MonoBehaviour
     public void updateBgVolumn(float value)
     {
         PlayerPrefs.SetFloat("BgVolumn", value);
-    }
+    } 
 }

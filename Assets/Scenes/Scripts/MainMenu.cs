@@ -7,6 +7,8 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject LoadingScreen;
     public GameObject MainMenuObj;
+    public Animator animator;
+    private int levelToLoad;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +21,21 @@ public class MainMenu : MonoBehaviour
         
     }
 
+    public void FadeToLevel(int levelIndex)
+    {
+        levelToLoad = levelIndex;
+        animator.SetTrigger("FadeOut");
+    }
+
+    public void OnFadeComplete()
+    {
+        LoadScene(levelToLoad);
+    }
+
     public void LoadScene(int sceneId)
     {
         StartCoroutine(LoadSceneAsync(sceneId));
+        animator.SetTrigger("FadeOut");
     }
 
     public void quitGame()
