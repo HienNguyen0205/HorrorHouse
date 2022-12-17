@@ -7,7 +7,8 @@ public class HideShowUIItem : MonoBehaviour
     [SerializeField] private GameObject touchUI_1;
     [SerializeField] private GameObject key_hand;
     [SerializeField] private GameObject key_table;
-
+    [SerializeField] private AudioClip pickupKey;
+    [SerializeField] private AudioSource sound;
     private bool isNear;
     private bool isPickUp = false;
     // Start is called before the first frame update
@@ -35,6 +36,7 @@ public class HideShowUIItem : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             isNear = true;
+
         }
     }
     private void OnTriggerExit(Collider col)
@@ -48,6 +50,7 @@ public class HideShowUIItem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && isPickUp == false && TriggerDoorControler.keyType == "")
         {
+            sound.PlayOneShot(pickupKey);
             isPickUp = true;
             TriggerDoorControler.keyType = key_table.name;
             key_hand.SetActive(true);
