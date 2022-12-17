@@ -46,10 +46,10 @@ public class HideShowUIItem : MonoBehaviour
     }
     void InputKey()
     {
-        if (Input.GetKeyDown(KeyCode.F) && isPickUp == false && DoorLockController.keyType == "")
+        if (Input.GetKeyDown(KeyCode.F) && isPickUp == false && TriggerDoorControler.keyType == "")
         {
             isPickUp = true;
-            DoorLockController.keyType = key_table.name;
+            TriggerDoorControler.keyType = key_table.name;
             key_hand.SetActive(true);
             key_table.SetActive(false);
         }
