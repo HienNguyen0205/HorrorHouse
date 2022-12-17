@@ -6,28 +6,43 @@ using TMPro;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource menuAudioSource;
-    public Slider vfxVolumnSlider;
+    private AudioSource menuAudioSource;
     private float menuAudioVolume = 1;
     // Start is called before the first frame update
     void Start()
     {
-        vfxVolumnSlider.value = 0.5f;
+        menuAudioSource = GetComponent<AudioSource>();
+        if (PlayerPrefs.HasKey("BgVolumn"))
+        {
+            menuAudioVolume = PlayerPrefs.GetFloat("BgVolumn");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("BgVolumn", 1f);
+            menuAudioVolume = PlayerPrefs.GetFloat("BgVolumn");
+
+        }
+
+        if (PlayerPrefs.HasKey("VfxVolumn"))
+        {
+            menuAudioVolume = PlayerPrefs.GetFloat("VfxVolumn");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("VfxVolumn", 0.5f);
+            menuAudioVolume = PlayerPrefs.GetFloat("BgVolumn");
+
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        menuAudioSource.volume = menuAudioVolume / 2;
+        menuAudioSource.volume = PlayerPrefs.GetFloat("BgVolumn");
     }
 
     public void ChangeVolumn(float volume)
     {
         menuAudioVolume = volume;
-    }
-
-    public void StoreVfxVolumnValue()
-    {
-        PlayerPrefs.SetFloat("VfxVolumn", vfxVolumnSlider.value);
     }
 }

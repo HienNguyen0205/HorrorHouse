@@ -11,8 +11,9 @@ public class BgVolumnSlider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sliderText.text = "100";
-        slider.value = 1f;
+        float value = PlayerPrefs.GetFloat("BgVolumn");
+        sliderText.text = value.ToString("0");
+        slider.value = PlayerPrefs.GetFloat("BgVolumn");
     }
 
     // Update is called once per frame
@@ -24,5 +25,10 @@ public class BgVolumnSlider : MonoBehaviour
     public void TextUpdate(float value){
         value = value * 100;
         sliderText.text = value.ToString("0");
+    }
+
+    public void updateBgVolumn(float value)
+    {
+        PlayerPrefs.SetFloat("BgVolumn", value);
     }
 }
