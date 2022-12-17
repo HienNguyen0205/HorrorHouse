@@ -17,7 +17,8 @@ public class HideShowUITouch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isNear || (isNear && Input.GetKey(KeyCode.F) && DoorLockController.keyType != ""))
+        if(!isNear || (isNear && Input.GetKey(KeyCode.F) && (TriggerDoorControler.lockDoor.ContainsKey(TriggerDoorControler.currDoor)
+            && TriggerDoorControler.lockDoor[TriggerDoorControler.currDoor] == TriggerDoorControler.keyType)))
         {
             isNear = false;
             touchUI_1.SetActive(false);

@@ -13,10 +13,12 @@ public class TriggerDoorControler : MonoBehaviour
     [SerializeField] private AudioClip openSound;
     [SerializeField] private AudioClip closeSound;
     [SerializeField] private AudioSource sound;
+    public static string keyType = "";
+    public static string currDoor = "";
     private bool isClose = true;
     private bool isNear = false;
     private bool isActive = false;
-    private Dictionary<string, string> lockDoor = new Dictionary<string, string>() {
+    public static Dictionary<string, string> lockDoor = new Dictionary<string, string>() {
         {"Living_Door", "Key_LivingTable"},
         {"Rainer_Door", "Key_RainerTable"},
         {"Wanda_Door", "Key_WandaTable"},
@@ -29,11 +31,11 @@ public class TriggerDoorControler : MonoBehaviour
         {
             if (lockDoor.ContainsKey(collider.gameObject.name))
             {
-                if(lockDoor[collider.gameObject.name] == DoorLockController.keyType)
+                if(lockDoor[collider.gameObject.name] == keyType)
                 {
                     DoorControl();
                     GameObject.Find("Key_Hand").SetActive(false);
-                    DoorLockController.keyType = "";
+                    keyType = "";
                     lockDoor.Remove(collider.gameObject.name); 
                 }
             }
@@ -108,11 +110,13 @@ public class TriggerDoorControler : MonoBehaviour
             isActive = false;
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             isNear = true;
+            currDoor = collider.gameObject.name;
         }
     }
 
@@ -121,6 +125,7 @@ public class TriggerDoorControler : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isNear = false;
+            currDoor = "";
         }
     }
 }
