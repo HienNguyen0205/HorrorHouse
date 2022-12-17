@@ -12,7 +12,7 @@ public class VfxSlider : MonoBehaviour
     void Start()
     {
         float value = PlayerPrefs.GetFloat("VfxVolumn");
-        Debug.Log(value);
+        value = value * 100;
         sliderText.text = value.ToString("0");
         slider.value = PlayerPrefs.GetFloat("VfxVolumn");
     }
@@ -27,5 +27,10 @@ public class VfxSlider : MonoBehaviour
     {
         value = value * 100;
         sliderText.text = value.ToString("0");
+    }
+
+    public void updateVfxVolumn(float value)
+    {
+        PlayerPrefs.SetFloat("VfxVolumn", value);
     }
 }
