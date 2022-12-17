@@ -12,6 +12,7 @@ public class BgVolumnSlider : MonoBehaviour
     void Start()
     {
         float value = PlayerPrefs.GetFloat("BgVolumn");
+        value = value * 100;
         sliderText.text = value.ToString("0");
         slider.value = PlayerPrefs.GetFloat("BgVolumn");
     }
