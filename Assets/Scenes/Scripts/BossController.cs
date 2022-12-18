@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -8,25 +10,33 @@ public class BossController : MonoBehaviour
 
     [SerializeField] private GameObject player;
     private NavMeshAgent agent;
-    private readonly float distanceRun = 15.0f;
+    private readonly float distanceRun = 18.0f;
     private readonly float distanceAttack = 3.0f;
     private Animation anim;
     public static bool isAttack = false;
     [SerializeField] private float radius;
     private Vector3 pos;
+    private AudioSource scream;
+    private bool warning = false;
 
     void Start()
     {
         anim = GetComponent<Animation>();
         agent = GetComponent<NavMeshAgent>();
+        scream = GetComponent<AudioSource>();
         pos = transform.position;
     }
 
     void Update()
     {
         float distance = Vector3.Distance(transform.position, player.transform.position);
-        if(distance < distanceRun)
+        if (distance <= distanceRun && !CheckInRoom())
         {
+            if (!scream.isPlaying && !warning)
+            {
+                warning = true;
+                scream.Play();
+            }
             Vector3 dirToPlayer = transform.position - player.transform.position;
             Vector3 newPos = transform.position - dirToPlayer;
             if (distance <= distanceAttack)
@@ -42,23 +52,32 @@ public class BossController : MonoBehaviour
         }
         else
         {
-            if(Vector3.Distance(transform.position, pos) <= 7.0f || distance < distanceRun)
+            warning = false;
+            if(Vector3.Distance(transform.position, pos) <= 5.0f)
             {
-                Vector3 randPos = RandomNavSphere(transform.position, radius, -1);
-                agent.SetDestination(randPos);
-                pos = randPos;
+                Vector3 randDirection = Random.insideUnitSphere * radius;
+                randDirection += transform.position;
+                NavMesh.SamplePosition(randDirection, out NavMeshHit navHit, radius, -1);
+                pos = navHit.position;
+                Debug.Log(pos);
+                agent.SetDestination(navHit.position);
+            }else if((distance > distanceRun && Vector3.Distance(transform.position, pos) > 5.0f) || CheckInRoom())
+            {
+                agent.SetDestination(pos);
             }
         }
     }
 
-    public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
+    bool CheckInRoom()
     {
-        Vector3 randDirection = Random.insideUnitSphere * dist;
-
-        randDirection += origin;
-
-        NavMesh.SamplePosition(randDirection, out NavMeshHit navHit, dist, layermask);
-
-        return navHit.position;
+        GameObject[] center = GameObject.FindGameObjectsWithTag("Room_Center");
+        foreach(GameObject check in center)
+        {
+            if(Vector3.Distance(check.transform.position, player.transform.position) <= 8.0f)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

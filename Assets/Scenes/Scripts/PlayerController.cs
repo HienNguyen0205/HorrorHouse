@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
         if(Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - DetectForDoor
   - DetectForSecretDoor
+  - Door
+  - Room_Center
+  - Interactive
   layers:
   - Default
   - TransparentFX

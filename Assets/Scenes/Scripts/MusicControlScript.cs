@@ -7,6 +7,7 @@ public class MusicControlScript : MonoBehaviour
     // Start is called before the first frame update
     public static MusicControlScript instance;
     private AudioSource audioSource;
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
