@@ -16,7 +16,10 @@ public class SubMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Cursor.visible = true;
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            quitGame();
+        }
 
     }
 
