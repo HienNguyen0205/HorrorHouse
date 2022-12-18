@@ -14,6 +14,8 @@ public class BossController : MonoBehaviour
     private NavMeshAgent agent;
     private readonly float distanceRun = 18.0f;
     private readonly float distanceAttack = 5.0f;
+    private readonly float limitTime = 8.0f;
+    private float time;
     private Animation anim;
     public static bool isAttack = false;
     [SerializeField] private float radius;
@@ -31,6 +33,7 @@ public class BossController : MonoBehaviour
 
     void Update()
     {
+        time += Time.deltaTime;
         float distance = Vector3.Distance(transform.position, player.transform.position);
         if (distance <= distanceRun && !CheckInRoom())
         {
@@ -55,8 +58,9 @@ public class BossController : MonoBehaviour
         else
         {
             warning = false;
-            if(Vector3.Distance(transform.position, pos) <= 5.0f)
+            if(Vector3.Distance(transform.position, pos) <= 5.0f || time > limitTime)
             {
+                time = 0.0f;
                 Vector3 randDirection = Random.insideUnitSphere * radius;
                 randDirection += transform.position;
                 NavMesh.SamplePosition(randDirection, out NavMeshHit navHit, radius, -1);
