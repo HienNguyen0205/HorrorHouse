@@ -7278,5 +7278,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChangeScene
       objectReference: {fileID: 0}
+    - target: {fileID: 8906872924331386294, guid: f06310157d9a26d4b8de27f47de08644, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f06310157d9a26d4b8de27f47de08644, type: 3}
