@@ -16,6 +16,7 @@ public class SubMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Cursor.visible = true;
 
     }
 

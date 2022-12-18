@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PickUpItem : MonoBehaviour
 {
@@ -31,6 +32,17 @@ public class PickUpItem : MonoBehaviour
         {
             visualItem1.SetActive(false);
             visualItem2.SetActive(true);
+            StartCoroutine(LoadSceneAsync(3));
+
+        }
+    }
+
+    IEnumerator LoadSceneAsync(int sceneId)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
+        while (!operation.isDone)
+        {
+            yield return null;
         }
     }
 }

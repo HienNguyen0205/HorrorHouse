@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class BossController : MonoBehaviour
 {
@@ -11,7 +13,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private GameObject player;
     private NavMeshAgent agent;
     private readonly float distanceRun = 18.0f;
-    private readonly float distanceAttack = 3.0f;
+    private readonly float distanceAttack = 5.0f;
     private Animation anim;
     public static bool isAttack = false;
     [SerializeField] private float radius;
@@ -65,6 +67,19 @@ public class BossController : MonoBehaviour
             {
                 agent.SetDestination(pos);
             }
+        }
+        if (isAttack)
+        {
+            StartCoroutine(LoadSceneAsync(2));
+        }
+    }
+
+    IEnumerator LoadSceneAsync(int sceneId)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
+        while (!operation.isDone)
+        {
+            yield return null;
         }
     }
 
