@@ -12,7 +12,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private GameObject player;
     private NavMeshAgent agent;
     private readonly float distanceRun = 18.0f;
-    private readonly float distanceAttack = 5.0f;
+    private readonly float distanceAttack = 3.0f;
     private readonly float limitTime = 8.0f;
     private float time;
     private Animation anim;
