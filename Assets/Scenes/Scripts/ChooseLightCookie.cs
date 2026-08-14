@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ChooseLightCookie : MonoBehaviour
@@ -14,9 +14,12 @@ public class ChooseLightCookie : MonoBehaviour
         _thisLight = GetComponent<Light>();
     }
 
-     void Start()
+    void Start()
     {
         _keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), chooseKeyForCookie);
-        _thisLight.cookie = lightCookie[0];
+        if (_thisLight != null && lightCookie != null && lightCookie.Count > 0)
+        {
+            _thisLight.cookie = lightCookie[0];
+        }
     }
 }

@@ -13,6 +13,8 @@ public class OptionMenuScript : MonoBehaviour
     void Start()
     {
         resolutions = Screen.resolutions;
+        if (resolutionDropdown == null) return;
+
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
         int currentResolutionIndex = 0;
@@ -32,14 +34,11 @@ public class OptionMenuScript : MonoBehaviour
 
     public void SetResolution(int resolutionIndex)
     {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (resolutions != null && resolutionIndex >= 0 && resolutionIndex < resolutions.Length)
+        {
+            Resolution resolution = resolutions[resolutionIndex];
+            Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        }
     }
 
     public void SetQuality(int qualityIndex)

@@ -31,10 +31,10 @@ public class OpenSecretMeetingroom : MonoBehaviour
 
     private IEnumerator Wait()
     {
-        paintingAnimator.Play("RotatePainting", 0, 0.0f);
+        if (paintingAnimator != null) paintingAnimator.Play("RotatePainting", 0, 0.0f);
         yield return new WaitForSeconds(1.5f);
-        door1.Play("OpenMeetingRoom1", 0, 0.0f);
-        door2.Play("OpenMeetingRoom2", 0, 0.0f);
+        if (door1 != null) door1.Play("OpenMeetingRoom1", 0, 0.0f);
+        if (door2 != null) door2.Play("OpenMeetingRoom2", 0, 0.0f);
     }
 
     private void OnTriggerEnter(Collider other)

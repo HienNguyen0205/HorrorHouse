@@ -34,7 +34,10 @@ public class CharacterSound : MonoBehaviour
         }
     }
     private void checkVoice() {
-        sound.PlayOneShot(charVoice);
+        if (sound != null && charVoice != null)
+        {
+            sound.PlayOneShot(charVoice);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {

@@ -30,9 +30,9 @@ public class TriggerSecretDoor : MonoBehaviour
 
     private IEnumerator Wait()
     {
-        lightAnimator.Play("RotateLight", 0, 0.0f);
+        if (lightAnimator != null) lightAnimator.Play("RotateLight", 0, 0.0f);
         yield return new WaitForSeconds(1.5f);
-        doorAnimator.Play("OpenSecretDoor", 0, 0.0f);
+        if (doorAnimator != null) doorAnimator.Play("OpenSecretDoor", 0, 0.0f);
     }
 
     private void OnTriggerEnter(Collider other)
