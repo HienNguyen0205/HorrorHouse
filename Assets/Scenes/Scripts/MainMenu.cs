@@ -12,7 +12,9 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 1f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Update is called once per frame
@@ -24,7 +26,7 @@ public class MainMenu : MonoBehaviour
     public void FadeToLevel(int levelIndex)
     {
         levelToLoad = levelIndex;
-        animator.SetTrigger("FadeOut");
+        if (animator != null) animator.SetTrigger("FadeOut");
     }
 
     public void OnFadeComplete()
@@ -35,7 +37,7 @@ public class MainMenu : MonoBehaviour
     public void LoadScene(int sceneId)
     {
         StartCoroutine(LoadSceneAsync(sceneId));
-        animator.SetTrigger("FadeOut");
+        if (animator != null) animator.SetTrigger("FadeOut");
     }
 
     public void quitGame()
@@ -45,8 +47,8 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator LoadSceneAsync(int sceneId)
     {
-        LoadingScreen.SetActive(true);
-        MainMenuObj.SetActive(false);
+        if (LoadingScreen != null) LoadingScreen.SetActive(true);
+        if (MainMenuObj != null) MainMenuObj.SetActive(false);
         yield return new WaitForSeconds(2);
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
         while (!operation.isDone)
@@ -54,12 +56,10 @@ public class MainMenu : MonoBehaviour
             yield return null;
         }
 
-        if(operation.isDone)
+        if (operation.isDone)
         {
-            
-            MainMenuObj.gameObject.SetActive(true);
-            LoadingScreen.gameObject.SetActive(false);
+            if (MainMenuObj != null) MainMenuObj.SetActive(true);
+            if (LoadingScreen != null) LoadingScreen.SetActive(false);
         }
-
     }
 }

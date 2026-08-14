@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class ElectricTorchOnOff : MonoBehaviour
 {
@@ -60,15 +60,16 @@ public class ElectricTorchOnOff : MonoBehaviour
 
 	void NoBatteryLight()
     {
+		Light lightComp = GetComponent<Light>();
 		if (_flashLightOn)
 		{
-			GetComponent<Light>().intensity = intensityLight;
-			_emissionMaterialFade.OnEmission();
+			if (lightComp != null) lightComp.intensity = intensityLight;
+			if (_emissionMaterialFade != null) _emissionMaterialFade.OnEmission();
 		}
 		else
 		{
-			GetComponent<Light>().intensity = 0.0f;
-			_emissionMaterialFade.OffEmission();
+			if (lightComp != null) lightComp.intensity = 0.0f;
+			if (_emissionMaterialFade != null) _emissionMaterialFade.OffEmission();
 		}
 		InputKey();
 	}

@@ -20,7 +20,6 @@ public class SoundManager : MonoBehaviour
         {
             PlayerPrefs.SetFloat("BgVolumn", 1f);
             menuAudioVolume = PlayerPrefs.GetFloat("BgVolumn");
-
         }
 
         if (PlayerPrefs.HasKey("VfxVolumn"))
@@ -30,15 +29,17 @@ public class SoundManager : MonoBehaviour
         else
         {
             PlayerPrefs.SetFloat("VfxVolumn", 0.5f);
-            menuAudioVolume = PlayerPrefs.GetFloat("BgVolumn");
-
+            menuAudioVolume = PlayerPrefs.GetFloat("VfxVolumn");
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        menuAudioSource.volume = PlayerPrefs.GetFloat("BgVolumn");
+        if (menuAudioSource != null)
+        {
+            menuAudioSource.volume = PlayerPrefs.GetFloat("BgVolumn", 1f);
+        }
     }
 
     public void ChangeVolumn(float volume)

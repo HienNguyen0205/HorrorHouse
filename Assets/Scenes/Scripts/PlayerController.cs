@@ -39,13 +39,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-            audioSource.Play();
             MovePlayer();
             footStepControl();
-        }
-        else
-        {
-            audioSource.Stop();
         }
     }
 

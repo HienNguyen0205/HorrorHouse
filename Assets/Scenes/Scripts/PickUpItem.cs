@@ -39,6 +39,9 @@ public class PickUpItem : MonoBehaviour
 
     IEnumerator LoadSceneAsync(int sceneId)
     {
+        Time.timeScale = 1f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
         while (!operation.isDone)
         {

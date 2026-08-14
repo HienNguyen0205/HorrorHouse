@@ -10,7 +10,9 @@ public class SubMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 1f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Update is called once per frame
@@ -18,15 +20,14 @@ public class SubMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Escape))
         {
-            quitGame();
+            LoadScene(0);
         }
-
     }
 
     public void FadeToLevel(int levelIndex)
     {
         levelToLoad = levelIndex;
-        animator.SetTrigger("FadeOut");
+        if (animator != null) animator.SetTrigger("FadeOut");
     }
 
     public void OnFadeComplete()
@@ -37,7 +38,7 @@ public class SubMenu : MonoBehaviour
     public void LoadScene(int sceneId)
     {
         StartCoroutine(LoadSceneAsync(sceneId));
-        animator.SetTrigger("FadeOut");
+        if (animator != null) animator.SetTrigger("FadeOut");
     }
 
     public void quitGame()
@@ -47,12 +48,14 @@ public class SubMenu : MonoBehaviour
 
     IEnumerator LoadSceneAsync(int sceneId)
     {
+        Time.timeScale = 1f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         yield return new WaitForSeconds(2);
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
         while (!operation.isDone)
         {
             yield return null;
         }
-
     }
 }

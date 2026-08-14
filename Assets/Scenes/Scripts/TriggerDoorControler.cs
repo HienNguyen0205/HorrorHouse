@@ -9,7 +9,7 @@ public class TriggerDoorControler : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private int doorType;
-    [SerializeField] private new Collider collider;
+    [SerializeField] private Collider doorCollider;
     [SerializeField] private AudioClip openSound;
     [SerializeField] private AudioClip closeSound;
     [SerializeField] private AudioSource sound;
@@ -25,18 +25,38 @@ public class TriggerDoorControler : MonoBehaviour
         {"Final_Door", "Key_FinalTable"},
     };
 
+    private void Awake()
+    {
+        if (doorCollider == null) doorCollider = GetComponent<Collider>();
+        keyType = "";
+        currDoor = "";
+        ResetLockDoors();
+    }
+
+    public static void ResetLockDoors()
+    {
+        lockDoor = new Dictionary<string, string>() {
+            {"Living_Door", "Key_LivingTable"},
+            {"Rainer_Door", "Key_RainerTable"},
+            {"Wanda_Door", "Key_WandaTable"},
+            {"Final_Door", "Key_FinalTable"},
+        };
+    }
+
     private void Update()
     {
+        string doorName = doorCollider != null ? doorCollider.gameObject.name : gameObject.name;
         if (isNear && Input.GetKeyDown(KeyCode.F) && !isActive)
         {
-            if (lockDoor.ContainsKey(collider.gameObject.name))
+            if (lockDoor.ContainsKey(doorName))
             {
-                if(lockDoor[collider.gameObject.name] == keyType)
+                if(lockDoor[doorName] == keyType)
                 {
                     DoorControl();
-                    GameObject.Find("Key_Hand").SetActive(false);
+                    GameObject keyHand = GameObject.Find("Key_Hand");
+                    if (keyHand != null) keyHand.SetActive(false);
                     keyType = "";
-                    lockDoor.Remove(collider.gameObject.name); 
+                    lockDoor.Remove(doorName); 
                 }
             }
             else
@@ -69,7 +89,7 @@ public class TriggerDoorControler : MonoBehaviour
                     animator.Play("DoorOpen5", 0, 0.0f);
                     break;
             }
-            sound.PlayOneShot(openSound);
+            if (sound != null && openSound != null) sound.PlayOneShot(openSound);
             isClose = false;
         }
         else
@@ -92,21 +112,22 @@ public class TriggerDoorControler : MonoBehaviour
                     animator.Play("DoorClose5", 0, 0.0f);
                     break;
             }
-            sound.PlayOneShot(closeSound);
+            if (sound != null && closeSound != null) sound.PlayOneShot(closeSound);
             isClose = true;
         }
     }
 
     private void checkAnimation()
     {
+        if (animator == null || doorCollider == null) return;
         if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
         {
-            collider.isTrigger = true;
+            doorCollider.isTrigger = true;
             isActive = true;
         }
         else
         {
-            collider.isTrigger = false;
+            doorCollider.isTrigger = false;
             isActive = false;
         }
     }
@@ -116,7 +137,7 @@ public class TriggerDoorControler : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isNear = true;
-            currDoor = collider.gameObject.name;
+            currDoor = doorCollider != null ? doorCollider.gameObject.name : gameObject.name;
         }
     }
 

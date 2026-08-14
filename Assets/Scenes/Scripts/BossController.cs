@@ -22,8 +22,11 @@ public class BossController : MonoBehaviour
     private AudioSource scream;
     private bool warning = false;
 
+    private bool isSceneLoading = false;
+
     void Start()
     {
+        isAttack = false;
         anim = GetComponent<Animation>();
         agent = GetComponent<NavMeshAgent>();
         scream = GetComponent<AudioSource>();
@@ -71,14 +74,18 @@ public class BossController : MonoBehaviour
                 agent.SetDestination(pos);
             }
         }
-        if (isAttack)
+        if (isAttack && !isSceneLoading)
         {
+            isSceneLoading = true;
             StartCoroutine(LoadSceneAsync(2));
         }
     }
 
     IEnumerator LoadSceneAsync(int sceneId)
     {
+        Time.timeScale = 1f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
         while (!operation.isDone)
         {

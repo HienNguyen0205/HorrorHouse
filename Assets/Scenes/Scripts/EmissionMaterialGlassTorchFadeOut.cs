@@ -1,4 +1,4 @@
-﻿//  - EmissionMaterialGlassTorchFadeOut - Script by Marcelli Michele
+//  - EmissionMaterialGlassTorchFadeOut - Script by Marcelli Michele
 
 // This script is attached to child light of the Electric Torch
 // and takes the emission material in conjunction with the light
@@ -17,19 +17,28 @@ public class EmissionMaterialGlassTorchFadeOut : MonoBehaviour
     private void Start()
     {
         _mat = GetComponent<Renderer>();
-        _alphaStart = _mat.material.color;
+        if (_mat != null && _mat.material != null)
+        {
+            _alphaStart = _mat.material.color;
+        }
 
         GameObject _torchLight = GameObject.Find("Torch Light");
 
         if (_torchLight != null) {_torchOnOff = _torchLight.GetComponent<ElectricTorchOnOff>();}
         if (_torchLight == null) {Debug.Log("Cannot find 'ElectricTorchOnOff' script");}
 
-        _intensity = _torchOnOff.intensityLight;
+        if (_torchOnOff != null)
+        {
+            _intensity = _torchOnOff.intensityLight;
+        }
     }
 
     private void Update()
     {
-        _intensity = _torchOnOff.intensityLight;
+        if (_torchOnOff != null)
+        {
+            _intensity = _torchOnOff.intensityLight;
+        }
     }
 
     public void TimeEmission(float t)
