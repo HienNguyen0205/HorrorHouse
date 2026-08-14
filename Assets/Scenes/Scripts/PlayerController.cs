@@ -20,8 +20,13 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        lightTeaching.SetActive(true);
+        if (lightTeaching != null) lightTeaching.SetActive(true);
         audioSource = GetComponent<AudioSource>();
+        if (PlayerBody == null) PlayerBody = GetComponent<Rigidbody>();
+        if (PlayerBody != null)
+        {
+            PlayerBody.freezeRotation = true;
+        }
     }
 
     void LateUpdate()
@@ -57,7 +62,10 @@ public class PlayerController : MonoBehaviour
             isRunning = false;
         }
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
-        PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
+        if (PlayerBody != null)
+        {
+            PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
+        }
     }
 
     void MovePlayerCamera()

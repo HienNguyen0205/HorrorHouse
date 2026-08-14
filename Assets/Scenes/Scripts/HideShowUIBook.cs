@@ -18,15 +18,13 @@ public class HideShowUIBook : MonoBehaviour
     {
         if (!isNear)
         {
-            touchUI_1.SetActive(false);
-            touchUI_2.SetActive(false);
+            if (touchUI_1 != null && touchUI_1.activeSelf) touchUI_1.SetActive(false);
+            if (touchUI_2 != null && touchUI_2.activeSelf) touchUI_2.SetActive(false);
         }
         else
         {
-            touchUI_1.SetActive(true);
             checkRead();
         }
-
     }
 
     private void OnTriggerEnter(Collider col)
@@ -45,28 +43,22 @@ public class HideShowUIBook : MonoBehaviour
     }
     void InputKey()
     {
-        if (Input.GetKeyDown(KeyCode.F) && isRead == false)
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            isRead = true;
-
-        }
-        else if (Input.GetKeyDown(KeyCode.F) && isRead == true)
-        {
-            isRead = false;
+            isRead = !isRead;
         }
     }
     void checkRead()
     {
         if (isRead)
         {
-            touchUI_2.SetActive(true);
-            touchUI_1.SetActive(false);
-
+            if (touchUI_2 != null && !touchUI_2.activeSelf) touchUI_2.SetActive(true);
+            if (touchUI_1 != null && touchUI_1.activeSelf) touchUI_1.SetActive(false);
         }
         else
         {
-            touchUI_2.SetActive(false);
-            touchUI_1.SetActive(true);
+            if (touchUI_2 != null && touchUI_2.activeSelf) touchUI_2.SetActive(false);
+            if (touchUI_1 != null && !touchUI_1.activeSelf) touchUI_1.SetActive(true);
         }
         InputKey();
     }

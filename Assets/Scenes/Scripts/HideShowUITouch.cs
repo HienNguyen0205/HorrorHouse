@@ -17,19 +17,18 @@ public class HideShowUITouch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isNear || (isNear && Input.GetKey(KeyCode.F) && (TriggerDoorControler.lockDoor.ContainsKey(TriggerDoorControler.currDoor)
-            && TriggerDoorControler.lockDoor[TriggerDoorControler.currDoor] == TriggerDoorControler.keyType)))
+        bool shouldHide = !isNear || (isNear && Input.GetKey(KeyCode.F) && (TriggerDoorControler.lockDoor.ContainsKey(TriggerDoorControler.currDoor)
+            && TriggerDoorControler.lockDoor[TriggerDoorControler.currDoor] == TriggerDoorControler.keyType));
+        if (shouldHide)
         {
-            isNear = false;
-            touchUI_1.SetActive(false);
-            touchUI_2.SetActive(false);
+            if (touchUI_1 != null && touchUI_1.activeSelf) touchUI_1.SetActive(false);
+            if (touchUI_2 != null && touchUI_2.activeSelf) touchUI_2.SetActive(false);
         }
         else
         {
-            touchUI_1.SetActive(true);
-            touchUI_2.SetActive(true);
+            if (touchUI_1 != null && !touchUI_1.activeSelf) touchUI_1.SetActive(true);
+            if (touchUI_2 != null && !touchUI_2.activeSelf) touchUI_2.SetActive(true);
         }
-
     }
    
     private void OnTriggerEnter(Collider col)

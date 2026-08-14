@@ -74,4 +74,6 @@ crashlytics-build.properties
 # Temporary build scripts and log files
 build.log
 build_exe.bat
+*.zip
+
 

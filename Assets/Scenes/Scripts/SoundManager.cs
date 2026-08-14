@@ -19,31 +19,27 @@ public class SoundManager : MonoBehaviour
         else
         {
             PlayerPrefs.SetFloat("BgVolumn", 1f);
-            menuAudioVolume = PlayerPrefs.GetFloat("BgVolumn");
+            menuAudioVolume = 1f;
         }
 
-        if (PlayerPrefs.HasKey("VfxVolumn"))
-        {
-            menuAudioVolume = PlayerPrefs.GetFloat("VfxVolumn");
-        }
-        else
+        if (!PlayerPrefs.HasKey("VfxVolumn"))
         {
             PlayerPrefs.SetFloat("VfxVolumn", 0.5f);
-            menuAudioVolume = PlayerPrefs.GetFloat("VfxVolumn");
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
         if (menuAudioSource != null)
         {
-            menuAudioSource.volume = PlayerPrefs.GetFloat("BgVolumn", 1f);
+            menuAudioSource.volume = menuAudioVolume;
         }
     }
 
     public void ChangeVolumn(float volume)
     {
         menuAudioVolume = volume;
+        if (menuAudioSource != null)
+        {
+            menuAudioSource.volume = volume;
+        }
+        PlayerPrefs.SetFloat("BgVolumn", volume);
     }
 }

@@ -33,29 +33,38 @@ public class BossController : MonoBehaviour
         pos = transform.position;
     }
 
+    private float nextPathUpdateTime = 0f;
+    private Vector3 lastTargetPos;
+
     void Update()
     {
         time += Time.deltaTime;
+        if (player == null) return;
+
         float distance = Vector3.Distance(transform.position, player.transform.position);
         if (distance <= distanceRun && !CheckInRoom())
         {
             if (!scream.isPlaying && !warning)
             {
                 warning = true;
-                scream.Play();
+                if (scream != null) scream.Play();
             }
-            Vector3 dirToPlayer = transform.position - player.transform.position;
-            Vector3 newPos = transform.position - dirToPlayer;
             if (distance <= distanceAttack)
             {
-                anim.Play("Attack1");
+                if (anim != null) anim.Play("Attack1");
                 isAttack = true;
             }
             else
             {
-                anim.Play("Walk");
+                if (anim != null) anim.Play("Walk");
             }
-            agent.SetDestination(newPos);
+            
+            if (Time.time >= nextPathUpdateTime || Vector3.Distance(lastTargetPos, player.transform.position) > 0.5f)
+            {
+                nextPathUpdateTime = Time.time + 0.15f;
+                lastTargetPos = player.transform.position;
+                if (agent != null && agent.enabled) agent.SetDestination(player.transform.position);
+            }
         }
         else
         {
@@ -93,12 +102,17 @@ public class BossController : MonoBehaviour
         }
     }
 
+    private GameObject[] centerRooms;
+
     bool CheckInRoom()
     {
-        GameObject[] center = GameObject.FindGameObjectsWithTag("Room_Center");
-        foreach(GameObject check in center)
+        if (centerRooms == null || centerRooms.Length == 0)
         {
-            if(Vector3.Distance(check.transform.position, player.transform.position) <= 8.0f)
+            centerRooms = GameObject.FindGameObjectsWithTag("Room_Center");
+        }
+        foreach(GameObject check in centerRooms)
+        {
+            if(check != null && player != null && Vector3.Distance(check.transform.position, player.transform.position) <= 8.0f)
             {
                 return true;
             }

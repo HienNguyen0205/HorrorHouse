@@ -20,20 +20,28 @@ public class PickUpItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (item == null || platform == null) return;
         float distanceGet = Vector3.Distance(transform.position, item.transform.position);
         float distancePut = Vector3.Distance(transform.position, platform.transform.position);
         if (distanceGet < 3.5f && TriggerDoorControler.keyType == "" && Input.GetKeyDown(KeyCode.F))
         {
-            visualItem1.SetActive(true);
-            item.SetActive(false);
+            if (visualItem1 != null)
+            {
+                visualItem1.SetActive(true);
+                Collider[] itemCols = visualItem1.GetComponentsInChildren<Collider>();
+                foreach (Collider c in itemCols)
+                {
+                    c.enabled = false;
+                }
+            }
+            if (item != null) item.SetActive(false);
             isPickUp = true;
         }
         if(isPickUp && distancePut < 3.5f && Input.GetKeyDown(KeyCode.F))
         {
-            visualItem1.SetActive(false);
-            visualItem2.SetActive(true);
+            if (visualItem1 != null) visualItem1.SetActive(false);
+            if (visualItem2 != null) visualItem2.SetActive(true);
             StartCoroutine(LoadSceneAsync(3));
-
         }
     }
 

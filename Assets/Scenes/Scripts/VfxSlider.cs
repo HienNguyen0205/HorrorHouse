@@ -11,22 +11,14 @@ public class VfxSlider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float value = PlayerPrefs.GetFloat("VfxVolumn");
-        value = value * 100;
-        sliderText.text = value.ToString("0");
-        slider.value = PlayerPrefs.GetFloat("VfxVolumn");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        float value = PlayerPrefs.GetFloat("VfxVolumn", 0.5f);
+        if (sliderText != null) sliderText.text = (value * 100).ToString("0");
+        if (slider != null) slider.value = value;
     }
 
     public void TextUpdate(float value)
     {
-        value = value * 100;
-        sliderText.text = value.ToString("0");
+        if (sliderText != null) sliderText.text = (value * 100).ToString("0");
     }
 
     public void updateVfxVolumn(float value)

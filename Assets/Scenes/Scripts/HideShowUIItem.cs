@@ -22,11 +22,10 @@ public class HideShowUIItem : MonoBehaviour
     {
         if (!isNear)
         {
-            touchUI_1.SetActive(false);
+            if (touchUI_1 != null && touchUI_1.activeSelf) touchUI_1.SetActive(false);
         }
         else
         {
-            touchUI_1.SetActive(true);
             CheckPickUp();
         }
     }
@@ -36,7 +35,6 @@ public class HideShowUIItem : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             isNear = true;
-
         }
     }
     private void OnTriggerExit(Collider col)
@@ -50,22 +48,30 @@ public class HideShowUIItem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && isPickUp == false && TriggerDoorControler.keyType == "")
         {
-            sound.PlayOneShot(pickupKey);
+            if (sound != null && pickupKey != null) sound.PlayOneShot(pickupKey);
             isPickUp = true;
-            TriggerDoorControler.keyType = key_table.name;
-            key_hand.SetActive(true);
-            key_table.SetActive(false);
+            if (key_table != null) TriggerDoorControler.keyType = key_table.name;
+            if (key_hand != null)
+            {
+                key_hand.SetActive(true);
+                Collider[] keyCols = key_hand.GetComponentsInChildren<Collider>();
+                foreach (Collider c in keyCols)
+                {
+                    c.enabled = false;
+                }
+            }
+            if (key_table != null) key_table.SetActive(false);
         }
     }
     void CheckPickUp()
     {
         if (isPickUp)
         {
-            touchUI_1.SetActive(false);
+            if (touchUI_1 != null && touchUI_1.activeSelf) touchUI_1.SetActive(false);
         }
         else
         {
-            touchUI_1.SetActive(true);
+            if (touchUI_1 != null && !touchUI_1.activeSelf) touchUI_1.SetActive(true);
             InputKey();
         }
     }

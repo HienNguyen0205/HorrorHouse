@@ -120,15 +120,23 @@ public class TriggerDoorControler : MonoBehaviour
     private void checkAnimation()
     {
         if (animator == null || doorCollider == null) return;
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        if (!isClose)
         {
             doorCollider.isTrigger = true;
-            isActive = true;
+            isActive = false;
         }
         else
         {
-            doorCollider.isTrigger = false;
-            isActive = false;
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+            {
+                doorCollider.isTrigger = true;
+                isActive = true;
+            }
+            else
+            {
+                doorCollider.isTrigger = false;
+                isActive = false;
+            }
         }
     }
 
