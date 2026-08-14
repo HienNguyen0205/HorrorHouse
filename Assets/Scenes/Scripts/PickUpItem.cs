@@ -10,19 +10,19 @@ public class PickUpItem : MonoBehaviour
     [SerializeField] private GameObject visualItem2;
     [SerializeField] private GameObject platform;
     private bool isPickUp = false;
-    // Start is called before the first frame update
+
     void Start()
     {
-        visualItem1.SetActive(false);
-        visualItem2.SetActive(false);
+        if (visualItem1 != null) visualItem1.SetActive(false);
+        if (visualItem2 != null) visualItem2.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (item == null || platform == null) return;
         float distanceGet = Vector3.Distance(transform.position, item.transform.position);
         float distancePut = Vector3.Distance(transform.position, platform.transform.position);
+
         if (distanceGet < 3.5f && TriggerDoorControler.keyType == "" && Input.GetKeyDown(KeyCode.F))
         {
             if (visualItem1 != null)
@@ -37,10 +37,17 @@ public class PickUpItem : MonoBehaviour
             if (item != null) item.SetActive(false);
             isPickUp = true;
         }
-        if(isPickUp && distancePut < 3.5f && Input.GetKeyDown(KeyCode.F))
+
+        if (isPickUp && distancePut < 3.5f && Input.GetKeyDown(KeyCode.F))
         {
             if (visualItem1 != null) visualItem1.SetActive(false);
             if (visualItem2 != null) visualItem2.SetActive(true);
+
+            if (LoreCollector.Instance != null)
+            {
+                LoreCollector.Instance.EvaluateEnding();
+            }
+
             StartCoroutine(LoadSceneAsync(3));
         }
     }

@@ -15,8 +15,14 @@ public class PlayerController : MonoBehaviour
     private float xRot;
     [SerializeField] private Transform PlayerCamera;
     [SerializeField] private Rigidbody PlayerBody;
-    [SerializeField] private float Speed;
-    [SerializeField] private float Sensitivity;
+    [SerializeField] private float Speed = 5f;
+    [SerializeField] private float Sensitivity = 2f;
+
+    public bool IsHiding { get; set; } = false;
+    public bool IsHoldingBreath { get; private set; } = false;
+    public bool IsRunning => isRunning;
+
+    private StaminaManager staminaManager;
 
     void Awake()
     {
@@ -29,9 +35,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        staminaManager = StaminaManager.Instance != null ? StaminaManager.Instance : FindObjectOfType<StaminaManager>();
+    }
+
     void LateUpdate()
     {
-        if(Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+        if (IsHiding) return;
+
+        if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
         {
             PlayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
             MovePlayerCamera();
@@ -41,26 +54,51 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         checkLightPressing();
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        HandleBreathInput();
+
+        if (IsHiding)
+        {
+            if (PlayerBody != null) PlayerBody.velocity = Vector3.zero;
+            isRunning = false;
+            return;
+        }
+
+        bool hasInput = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
+        if (hasInput)
         {
             PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
             MovePlayer();
             footStepControl();
         }
+        else
+        {
+            isRunning = false;
+            if (staminaManager != null) staminaManager.RegenerateStamina(Time.deltaTime);
+            if (PlayerBody != null) PlayerBody.velocity = new Vector3(0f, PlayerBody.velocity.y, 0f);
+        }
     }
 
     void MovePlayer()
     {
-        if(Input.GetKey(KeyCode.LeftShift))
+        bool wantSprint = Input.GetKey(KeyCode.LeftShift);
+
+        if (wantSprint && staminaManager != null && staminaManager.ConsumeStamina(Time.deltaTime))
         {
-            Speed = 8;
+            Speed = 8f;
             isRunning = true;
         }
-        if(Input.GetKey(KeyCode.LeftShift) == false)
+        else if (wantSprint && (staminaManager == null || staminaManager.IsExhausted))
         {
-            Speed = 5;
+            Speed = 2.5f; // Slow down during exhaustion
             isRunning = false;
         }
+        else
+        {
+            Speed = 5f;
+            isRunning = false;
+            if (staminaManager != null) staminaManager.RegenerateStamina(Time.deltaTime);
+        }
+
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
         if (PlayerBody != null)
         {
@@ -92,11 +130,17 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
     void checkLightPressing()
     {
-        if(Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.E) && lightTeaching != null)
         {
             lightTeaching.SetActive(false);
         }
+    }
+
+    void HandleBreathInput()
+    {
+        IsHoldingBreath = Input.GetKey(KeyCode.Space);
     }
 }
