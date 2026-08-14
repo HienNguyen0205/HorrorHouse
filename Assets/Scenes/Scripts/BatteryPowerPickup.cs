@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class BatteryPowerPickup : MonoBehaviour
 {
@@ -11,15 +11,21 @@ public class BatteryPowerPickup : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other)
+        if (other != null && other.CompareTag("Player"))
         {
-            _torchOnOff._PowerPickUp = true;
-            _torchOnOff.intensityLight = PowerIntensityLight;
+            if (_torchOnOff != null)
+            {
+                _torchOnOff._PowerPickUp = true;
+                _torchOnOff.intensityLight = PowerIntensityLight;
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        _torchOnOff._PowerPickUp = false;
+        if (other != null && other.CompareTag("Player"))
+        {
+            if (_torchOnOff != null) _torchOnOff._PowerPickUp = false;
+        }
     }
 }

@@ -31,7 +31,10 @@ public class ElectricTorchOnOff : MonoBehaviour
 		{
 			_emissionMaterialFade = _scriptControllerEmissionFade.GetComponent<EmissionMaterialGlassTorchFadeOut>();
 		}
-		if (_scriptControllerEmissionFade  == null) {Debug.Log("Cannot find 'EmissionMaterialGlassTorchFadeOut' script");}
+		if (_emissionMaterialFade == null)
+		{
+			_emissionMaterialFade = FindObjectOfType<EmissionMaterialGlassTorchFadeOut>();
+		}
 	}
 
 	void Update()
