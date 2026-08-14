@@ -41,18 +41,28 @@ public class BossController : MonoBehaviour
         time += Time.deltaTime;
         if (player == null) return;
 
-        float distance = Vector3.Distance(transform.position, player.transform.position);
-        if (distance <= distanceRun && !CheckInRoom())
+        Vector3 bossPosXZ = new Vector3(transform.position.x, 0f, transform.position.z);
+        Vector3 playerPosXZ = new Vector3(player.transform.position.x, 0f, player.transform.position.z);
+        float distance = Vector3.Distance(bossPosXZ, playerPosXZ);
+        float heightDiff = Mathf.Abs(transform.position.y - player.transform.position.y);
+
+        float effectiveAttackDist = distanceAttack;
+        if (agent != null)
         {
-            if (!scream.isPlaying && !warning)
+            effectiveAttackDist = Mathf.Max(distanceAttack, agent.stoppingDistance + 0.6f);
+        }
+
+        if (distance <= distanceRun && heightDiff <= 3.0f && !CheckInRoom())
+        {
+            if (scream != null && !scream.isPlaying && !warning)
             {
                 warning = true;
-                if (scream != null) scream.Play();
+                scream.Play();
             }
-            if (distance <= distanceAttack)
+
+            if (distance <= effectiveAttackDist)
             {
-                if (anim != null) anim.Play("Attack1");
-                isAttack = true;
+                TriggerPlayerAttack();
             }
             else
             {
@@ -76,17 +86,41 @@ public class BossController : MonoBehaviour
                 randDirection += transform.position;
                 NavMesh.SamplePosition(randDirection, out NavMeshHit navHit, radius, -1);
                 pos = navHit.position;
-                Debug.Log(pos);
-                agent.SetDestination(navHit.position);
-            }else if((distance > distanceRun && Vector3.Distance(transform.position, pos) > 5.0f) || CheckInRoom())
+                if (agent != null && agent.enabled) agent.SetDestination(navHit.position);
+            }
+            else if((distance > distanceRun && Vector3.Distance(transform.position, pos) > 5.0f) || CheckInRoom())
             {
-                agent.SetDestination(pos);
+                if (agent != null && agent.enabled) agent.SetDestination(pos);
             }
         }
+
         if (isAttack && !isSceneLoading)
         {
             isSceneLoading = true;
+            if (agent != null && agent.enabled) agent.isStopped = true;
             StartCoroutine(LoadSceneAsync(2));
+        }
+    }
+
+    private void TriggerPlayerAttack()
+    {
+        if (anim != null) anim.Play("Attack1");
+        isAttack = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other != null && other.CompareTag("Player") && !CheckInRoom())
+        {
+            TriggerPlayerAttack();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision != null && collision.gameObject != null && collision.gameObject.CompareTag("Player") && !CheckInRoom())
+        {
+            TriggerPlayerAttack();
         }
     }
 
