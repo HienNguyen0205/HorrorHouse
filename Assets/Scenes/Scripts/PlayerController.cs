@@ -70,25 +70,25 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayerCamera()
     {
+        if (PlayerCamera == null) return;
         xRot -= PlayerMouseInput.y * Sensitivity;
+        xRot = Mathf.Clamp(xRot, -60f, 60f);
         transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
-        if(xRot > -60f && xRot < 60f)
-        {
-            PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
-        }
+        PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
     }
 
     void footStepControl()
     {
+        if (audioSource == null) return;
         if (audioSource.isPlaying == false)
         {
             if (isRunning)
             {
-                audioSource.PlayOneShot(runSound, 0.7f);
+                if (runSound != null) audioSource.PlayOneShot(runSound, 0.7f);
             }
             else
             {
-                audioSource.PlayOneShot(footStep, 0.5f);
+                if (footStep != null) audioSource.PlayOneShot(footStep, 0.5f);
             }
         }
     }

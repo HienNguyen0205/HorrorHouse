@@ -1,13 +1,9 @@
-//  - EmissionMaterialGlassTorchFadeOut - Script by Marcelli Michele
-
-// This script is attached to child light of the Electric Torch
-// and takes the emission material in conjunction with the light
-
 using UnityEngine;
 
 public class EmissionMaterialGlassTorchFadeOut : MonoBehaviour
 {
     private Renderer _mat;
+    private Material _instancedMaterial;
     private float _intensity = 0;
 
     Color _alphaStart;
@@ -17,15 +13,22 @@ public class EmissionMaterialGlassTorchFadeOut : MonoBehaviour
     private void Start()
     {
         _mat = GetComponent<Renderer>();
-        if (_mat != null && _mat.material != null)
+        if (_mat != null)
         {
-            _alphaStart = _mat.material.color;
+            _instancedMaterial = _mat.material;
+            if (_instancedMaterial != null)
+            {
+                _alphaStart = _instancedMaterial.color;
+            }
         }
 
         GameObject _torchLight = GameObject.Find("Torch Light");
+        if (_torchLight == null) _torchLight = GameObject.FindWithTag("TorchLight");
 
-        if (_torchLight != null) {_torchOnOff = _torchLight.GetComponent<ElectricTorchOnOff>();}
-        if (_torchLight == null) {Debug.Log("Cannot find 'ElectricTorchOnOff' script");}
+        if (_torchLight != null)
+        {
+            _torchOnOff = _torchLight.GetComponent<ElectricTorchOnOff>();
+        }
 
         if (_torchOnOff != null)
         {
@@ -44,7 +47,10 @@ public class EmissionMaterialGlassTorchFadeOut : MonoBehaviour
     public void TimeEmission(float t)
     {
         _intensity -= t * Time.deltaTime;
-        _mat.material.SetColor("_EmissionColor", _alphaStart * _intensity);
+        if (_instancedMaterial != null)
+        {
+            _instancedMaterial.SetColor("_EmissionColor", _alphaStart * _intensity);
+        }
         if (_intensity < 0)
         {
             _intensity = 0;
@@ -53,11 +59,16 @@ public class EmissionMaterialGlassTorchFadeOut : MonoBehaviour
 
     public void OffEmission()
     {
-        _mat.material.SetColor("_EmissionColor", _alphaStart * Color.black);
+        if (_instancedMaterial != null)
+        {
+            _instancedMaterial.SetColor("_EmissionColor", Color.black);
+        }
     }    
     public void OnEmission()
     {
-        _mat.material.SetColor("_EmissionColor", _alphaStart * _intensity);
+        if (_instancedMaterial != null)
+        {
+            _instancedMaterial.SetColor("_EmissionColor", _alphaStart * _intensity);
+        }
     }
-
 }

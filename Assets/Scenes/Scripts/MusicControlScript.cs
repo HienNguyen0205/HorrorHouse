@@ -8,19 +8,23 @@ public class MusicControlScript : MonoBehaviour
     public static MusicControlScript instance;
     private AudioSource audioSource;
 
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.volume = PlayerPrefs.GetFloat("VfxVolumn");
-    }
-    // Update is called once per frame
-    private void Awake(){
-        DontDestroyOnLoad(this.gameObject);
-        if(instance == null){
-            instance = this;
-        }
-        else{
-            Destroy(gameObject);
+        if (audioSource != null)
+        {
+            audioSource.volume = PlayerPrefs.GetFloat("VfxVolumn", 0.5f);
         }
     }
 }

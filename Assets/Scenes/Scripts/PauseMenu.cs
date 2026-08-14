@@ -67,8 +67,9 @@ public class PauseMenu : MonoBehaviour
     {
         GameIsPaused = false;
         Time.timeScale = 1f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadSceneAsync(0);
-
     }
 
     public void QuitGame()
